@@ -9,6 +9,7 @@
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathcal{A}}
 \newcommand{\diff}{\overset{\text{def}}{\iff}}
 \newcommand{\set}[1]{\{#1\}}
 
@@ -57,7 +58,7 @@ po predavanjih profesorja Sergia Cabella}
 
 \begin{definicija}
 
-Naj bo $A$ množica. \textit{Funkcija preferenc} na množici $A$ je preslikava $u: A \rightarrow \R$ funkcija preferenc. Intuicija: $\forall a,a' \in A, a \neq a'$:
+Naj bo $\A$ množica. \textit{Funkcija preferenc} na množici $\A$ je preslikava $u: \A \rightarrow \R$ funkcija preferenc. Intuicija: $\forall a,a' \in \A, a \neq a'$:
 \begin{itemize}
 	\item $u(a)>u(a')$ ``$\iff$'' $a$ je boljše kot $a'$
 	\item $u(a)<u(a')$ ``$\iff$'' $a$ je slabše kot $a'$
@@ -87,9 +88,9 @@ pri čemer:
 \begin{itemize}
 	\item $N$ je končna množica \textit{igralcev}.
 	\item Za vsakega igralca $i \in N$ je $A_i$ neprazna množica \textit{akcij} za $i \in N$. Naj bo 
-	$$A ~:=~ \prod_{i \in N} A_i$$
+	$$\A ~:=~ \prod_{i \in N} A_i$$
 	množica \textit{profilov akcij}.
-	\item Za vsakega igralca $i \in N$ je $u_i: A \rightarrow \R$ je funkcija preferenc na $A$ za igralca $i$.
+	\item Za vsakega igralca $i \in N$ je $u_i: \A \rightarrow \R$ je funkcija preferenc na $\A$ za igralca $i$.
 \end{itemize}
 
 \end{definicija}
@@ -99,7 +100,7 @@ pri čemer:
 
 Ponavadi: $N = [n] = \set{1,\ldots,n}$. V tem primeru imamo trojico
 $$([n],(A_1,\ldots,A_n),(u_1,\ldots,u_n)),$$
-$A=A_1 \times \ldots \times A_n$ ter $u_i: A_1 \times \ldots \times A_n \rightarrow \R$.
+$\A=A_1 \times \ldots \times A_n$ ter $u_i: A_1 \times \ldots \times A_n \rightarrow \R$.
 
 \end{opomba}
 \vspace{0.5cm}
@@ -121,11 +122,96 @@ $$u_i(x_1,\ldots,x_m \mid y) ~=~ u_i(x_1,\ldots,x_{i-1},y,x_{i+1},\ldots,x_n).$$
 \begin{definicija}
 
 Naj bo $\Gamma = (N, (A_i)_{i \in N}, (u_i)_{i \in N})$ strateška igra s funkcijami preferenc. Naj bo
-$$A ~=~ \prod_{i \in N} A_i.$$
-Profil akcij $a \in A$ je \textit{čisto Nashevo ravnotežje} $\diff$
+$$\A ~=~ \prod_{i \in N} A_i.$$
+Profil akcij $a^* \in \A$ je \textit{čisto Nashevo ravnovesje} $\diff$
 $$\forall i \in N, ~\forall b \in A_i: ~u_i(a^*) \geq u_i(a^* \mid b).$$
+Tak $a^* \in \A$ je \textit{strogo čisto Nashevo ravnovesje} $\diff$
+$$\forall i \in N, ~\forall b \in A_i\setminus\set{a_i^*}: ~u_i(a^*) > u_i(a^* \mid b).$$
 
 \end{definicija}
+\vspace{0.5cm}
+
+\pagebreak
+
+\begin{definicija}
+
+Naj bo $\Gamma = (N, (A_i)_{i \in N}, (u_i)_{i \in N})$ strateška igra s funkcijami preferenc. Označimo
+$$\A ~=~ \prod_{n \in N} A_i.$$
+\textit{Najboljši odgovor} igralca $i \in N$ je 
+\begin{align*}
+B_i: ~\A ~&\rightarrow~ 2^{A_i} ~=~ \set{B \mid B \subseteq A_i} \\
+a ~&\mapsto~ \set{b \in A_i \mid \forall c \in A_i: u_i(a \mid b) \geq u_i(a \mid c)} \\
+&=~ \set{b \in A_i \mid u_i(a \mid b) ~=~ \max_{c \in A_i}(a \mid c)}.
+\end{align*}
+Za $N = [n] = \set{1,\ldots,n}$ je formula v definiciji za igralca $i=1:$
+$$B_1(a_1,\ldots,a_n) ~=~ \set{b \in A_1 \mid u_1(b,a_2,\ldots,a_n) = \max_{c \in A_1} u_1(c,a_2,\ldots,a_n)},$$
+analogno za $i=2,\ldots,n$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+~
+\begin{itemize}
+	\item Bolj pravilno bi bilo reči ``\textit{množica najboljših odgovorov}''.
+	\item Večkrat velja $|B_i(a)|=1$ (le en najboljši odgovor). V tem primeru pišemo brez $\set$.
+	\item Pri definiciji $B_i$ nima $a_i$ nobene vloge. Za dva igralca bomo ponavadi napisali
+	\begin{align*}
+	B_1(a_2) ~&\equiv~ B_1(*,a_2) \\
+	B_2(a_1) ~&\equiv~ B_2(a_1,*).
+	\end{align*}
+\end{itemize}
+
+\end{opomba} 
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Profil akcij $a^* = (a_i^*)_{i \in N}$ je čisto Nashevo ravnovesje $\iff$
+$$\forall i \in N: ~a_i^* \in B_i(a^*).$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\pagebreak
+
+\begin{trditev}
+Profil akcij $a^* = (a_i^*)_{i \in N}$ je strogo čisto Nashevo \hbox{ravnovesje $\iff$}
+$$\forall i \in N: ~a_i^* \in B_i^\text{str}(a^*),$$
+kjer $B_i^\text{str}$ definiramo kot
+\begin{align*}
+B_i^\text{str}: ~\A ~&\rightarrow~ 2^{A_i} \\
+a ~&\mapsto~ \set{b \in A_i \mid \forall c \in A_i \setminus \set{b}: u_i(a^* \mid b) > u_i(a^* \mid c)} \\
+&=~ \begin{cases}
+\text{edini max}; ~&\text{če obstaja}, \\
+\emptyset; ~&\text{sicer}.
+\end{cases}
+\end{align*}
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Dominacije}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\Gamma = (N, (A_i)_{i \in N}, (u_i)_{i \in N})$ strateška igra s funkcijo preferenc. Označimo
+$$\A ~=~ \prod_{i \in N} A_i.$$
+Akcija $b \in A_i$ \textit{šibko dominira} akcijo $c \in A_i$, če velja
+$$\forall a \in \A: ~u_i(a \mid b) \geq u_i(a \mid c).$$
+Akcija $b \in A_i$ \textit{strogo dominira} akcijo $c \in A_i$, če velja
+$$\forall a \in \A: ~u_i(a \mid b) > u_i(a \mid c).$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če $b \in A_i$ strogo dominira $c \in A_i$, potem ne obstaja čisto Nashevo ravnovesje $a^* = (a_i^*)_{i \in N}$ z $a_i^* = c$. Če $b \in A_i$ dominira $c \in A_i$, potem obstaja strogo čisto Nashevo ravnovesje $a^* = (a_i^*)_{i \in N}$ z $a_i^* = c$.
+
+\end{trditev}
 \vspace{0.5cm}
 
 % *************************************************************************************************
