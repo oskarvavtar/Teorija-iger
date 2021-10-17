@@ -12,6 +12,8 @@
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\diff}{\overset{\text{def}}{\iff}}
 \newcommand{\set}[1]{\{#1\}}
+\newcommand{\oklepaj}[1]{\left(#1\right)}
+\newcommand{\oglati}[1]{\left[#1\right]}
 
 \theoremstyle{definition}
 \newtheorem{definicija}{Definicija}[section]
@@ -210,6 +212,116 @@ $$\forall a \in \A: ~u_i(a \mid b) > u_i(a \mid c).$$
 \begin{trditev}
 
 Če $b \in A_i$ strogo dominira $c \in A_i$, potem ne obstaja čisto Nashevo ravnovesje $a^* = (a_i^*)_{i \in N}$ z $a_i^* = c$. Če $b \in A_i$ dominira $c \in A_i$, potem obstaja strogo čisto Nashevo ravnovesje $a^* = (a_i^*)_{i \in N}$ z $a_i^* = c$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Strateške igre s funkcijami koristnosti}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A = (a_1,\ldots,a_\Pi)$ končna množica in $\pi$ funkcija verjetnosti:
+$$\pi ~\sim~ \begin{pmatrix}
+a_1 & \ldots & a_\Pi \\
+\pi(a_1) & \ldots & \pi(a_\Pi)
+\end{pmatrix}.$$ 
+Množica $\pi(A)$, definirana kot
+$$\pi(A) ~=~ \set{((\pi(a_i))_{a_i \in A} \mid \forall a_i \in A_i: \pi(a_i) \geq 0, ~\sum_{a_i \in A} \pi(a_i) = 1}$$
+je \textit{množica loterij} na $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A$ končna. \textit{Funkcija koristnosti} na $A$ je prelikava $u: A \rightarrow \R$, ki določa preference na množici $\pi(A)$ in sicer
+\begin{align*}
+\hat{u}: \pi(A) ~&\rightarrow~ \R \\
+\pi = (\pi(a))_{a \in A} ~&\mapsto~ \sum_{a \in A} \pi(a) u(a),
+\end{align*}
+če je $\hat{u}$ razširitev funkcije $u$. Osnovni princip bo:
+$$\hat{u}(\pi) \geq \hat{u}(\pi') ~~~\iff~~~ \pi ~\text{ni slabše od}~ \pi'.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Lahko imamo različni funkciji koristnosti, ki določata iste preference na $\pi(A)$. En del teorije koristnosti se ukvaraja z obratno smerjo, in sicer za katere preference nad $\pi(A)$ obstaja funkcija koristnosti $u: A \rightarrow \R$, za katero imamo razširitev iste preference $\pi(A)$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Igre koristnosti}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Strateška igra s funkcijami koristnosti} je trojica 
+$$\Gamma ~=~ (N, (A_i)_{i \in N}, (u_i)_{i \in N}),$$
+pri čemer:
+\begin{itemize}
+	\item je $N$ neprazna in končna množica igralcev.
+	\item je $A_i$ neprazna in končna množica akcij za igralca $i \in N$. Naj bo $A = \prod_{i \in N} A_i$ množica profilov akcij.
+	\item je $u_i: A \rightarrow \R$ funkcija koristnosti za igralca $i \in N$.
+\end{itemize}
+
+\noindent Množica strategij za igralca $i \in N$ je $S_i = \pi(A_i)$. Strategija $\pi \in S_i$ meša akcije $\set{a \in A_i \mid \pi_i(a) > 0}$. Strategija $\pi \in S_i$ je čista, če je $\pi = S(a)$ za nek $a \in A_i$. Množica profilov strategij je $S = \prod_{i \in N} S_i$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Definiramo:
+\begin{align*}
+u_i: S = \prod_{j \in N} S_j ~&\rightarrow~ \R \\
+\pi = (\pi_j)_{j \in N} ~&\mapsto~ \sum_{a \in A} \oklepaj{\prod_{j \in N}\pi_j(a_j)} u_i(a).
+\end{align*}
+Velja:
+$$u_i(\pi) ~=~ \sum_{a_i \in A} \pi_i(a_i) \oglati{u_i(\pi \mid \delta(a_i)}.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Nasheva ravnovesja}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\Gamma(N, (A_i)_{i \in N}, (u_i)_{i \in N})$ strateška igra s funkcijami koristnosti. Profil strategij 
+$$\Pi^* = (\pi_i^*) ~\in~ S = \prod_{i \in N} S_i$$
+je Nashevo ravnovesje $\diff$
+$$\forall i \in N, ~\forall \pi'_i \in S_i, ~\pi'_i \neq \pi_i^*: ~u_i^*(\pi^*) ~>~ u_i(\pi^* \mid \pi'_i).$$
+Imamo preslikavo
+\begin{align*}
+\phi_{\mathscr{K} \rightarrow \mathscr{P}}: \set{\text{igra s funkcijami koristnosti}} ~&\rightarrow~ \set{\text{igra s funkcijami preferenc}} \\
+(N, (A_i)_{i \in N}, (u_i)_{i \in N} ~&\mapsto~ (N, (S_i = \pi(A_i))_{i \in N}, (u_i)_{i \in N}).
+\end{align*}
+$\phi_{\mathscr{K} \rightarrow \mathscr{P}}$ je \textit{mešana razširitev} igre $\Gamma$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\Gamma$ strateška igra s funkcijami koristnosti in naj bo $\pi$ profil strategij v $\Gamma$. $\pi$ je Nashevo ravnovesje v $\Gamma$ $\iff$ $\pi$ je čisto Nashevo ravnovesje v $\phi_{\mathscr{K} \rightarrow \mathscr{P}}(\Gamma)$.
 
 \end{trditev}
 \vspace{0.5cm}
