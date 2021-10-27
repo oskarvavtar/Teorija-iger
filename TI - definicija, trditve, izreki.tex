@@ -312,7 +312,7 @@ $$\forall i \in N, ~\forall \pi'_i \in S_i, ~\pi'_i \neq \pi_i^*: ~u_i^*(\pi^*) 
 Imamo preslikavo
 \begin{align*}
 \phi_{\mathscr{K} \rightarrow \mathscr{P}}: \set{\text{igra s funkcijami koristnosti}} ~&\rightarrow~ \set{\text{igra s funkcijami preferenc}} \\
-(N, (A_i)_{i \in N}, (u_i)_{i \in N} ~&\mapsto~ (N, (S_i = \pi(A_i))_{i \in N}, (u_i)_{i \in N}).
+(N, (A_i)_{i \in N}, (u_i)_{i \in N}) ~&\mapsto~ (N, (S_i = \pi(A_i))_{i \in N}, (u_i)_{i \in N}).
 \end{align*}
 $\phi_{\mathscr{K} \rightarrow \mathscr{P}}$ je \textit{mešana razširitev} igre $\Gamma$.
 
@@ -322,6 +322,80 @@ $\phi_{\mathscr{K} \rightarrow \mathscr{P}}$ je \textit{mešana razširitev} igr
 \begin{trditev}
 
 Naj bo $\Gamma$ strateška igra s funkcijami koristnosti in naj bo $\pi$ profil strategij v $\Gamma$. $\pi$ je Nashevo ravnovesje v $\Gamma$ $\iff$ $\pi$ je čisto Nashevo ravnovesje v $\phi_{\mathscr{K} \rightarrow \mathscr{P}}(\Gamma)$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}[Nash, 1949]
+
+Vsaka strateška igra s funkcijami koristnosti ima vsaj eno Nashevo ravnovesje.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}
+~
+\begin{itemize}
+	\item Dokaz je nekonstruktiven, nič ne pove kako Nashevo ravnovesje najti.
+	\item Pomembno je, da ima vsak igralec končno množico akcij. Obstajajo sicer tudi posplošitve za neskončno mnogo akcij.
+	\item Če je igra generična, potem je število Nashevih ravnovesij liho.
+\end{itemize}
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Profil strategij $\pi^* = (\pi_i^*)_{i\in N}$ je Nashevo ravnovesje
+$$\iff~ \forall i \in N ~\forall a_i \in A_i: ~u_i(\pi^*) \geq u_i(\pi^* \mid \delta(a_i)).$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}[Princip indiferentnosti]
+
+Če je $\pi^* = (\pi_i^*)_{i \in N}$ Nashevo ravnovesje, potem velja
+$$\forall i \in N ~\forall a_i \in A_i: ~(\pi_i^*(a_i) > 0 ~\Rightarrow~ u_i(\pi^*) = u_i(\pi^* \mid \delta(a))).$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{opomba}
+~
+\begin{itemize}
+	\item Uporabna, ker imamo enačbe.
+	\item To ni karakterizacija. Uporabimo za iskanje kandidatov.
+	\item Ko ima igralec $i$ $|A_i| = 2$, potem, ko velja
+	$$u_i(\pi^* \mid \delta(a_i)) ~=~ u_i(\pi^* \mid \delta(b_i)) ~=~ u_i(\pi^*)$$
+	avtomatično velja pogoj sistema neenačb za igralca $i$:
+	\begin{align*}
+	u_i(\pi^* \mid \delta(a_i)) ~\leq~ u_i(\pi^*) \\
+	u_i(\pi^* \mid \delta(b_i)) ~\leq~ u_i(\pi^*)
+	\end{align*}
+\end{itemize}
+
+\end{opomba}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Dominacije}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Strategija $\alpha_i \in S_i$ \textit{(šibko) dominira} strategijo $\beta_i \in S_i$, če velja
+$$\forall \pi \in S: ~u_i(\pi \mid \alpha_i) ~\geq~ u_i(\pi \mid \beta_i).$$
+Strategija $\alpha_i \in S_i$ \textit{strogo dominira} $\beta_i \in S_i$, če velja
+$$\forall \pi \in S: ~u_i(\pi \mid \alpha_i) ~>~ u_i(\pi \mid \beta_i).$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\pi^* = (\pi_i^*)_{i \in N}$ Nashevo ravnovesje. Če strategija \hbox{$\alpha_i \in S_i$} strogo dominira $\delta(b_i)$, potem 
+$$\pi_i^*(b_i) ~=~ 0.$$
 
 \end{trditev}
 \vspace{0.5cm}
