@@ -14,6 +14,11 @@
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\oklepaj}[1]{\left(#1\right)}
 \newcommand{\oglati}[1]{\left[#1\right]}
+\newcommand{\T}{\textsf{T}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\q}{\mathbf{q}}
+\renewcommand{\AA}{\mathbf{A}}
+\newcommand{\BB}{\mathbf{B}}
 
 \theoremstyle{definition}
 \newtheorem{definicija}{Definicija}[section]
@@ -396,6 +401,68 @@ $$\forall \pi \in S: ~u_i(\pi \mid \alpha_i) ~>~ u_i(\pi \mid \beta_i).$$
 
 Naj bo $\pi^* = (\pi_i^*)_{i \in N}$ Nashevo ravnovesje. Če strategija \hbox{$\alpha_i \in S_i$} strogo dominira $\delta(b_i)$, potem 
 $$\pi_i^*(b_i) ~=~ 0.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Dokaz Nashevega izreka \\(dokaz je v zapiskih, tu le potrebno ``orodje'')}
+\vspace{0.5cm}
+
+\begin{izrek}[Brouwerjev izrek]
+
+Naj bo $X \subseteq \R^d$ konveksna in kompaktna množica ter $T: X \rightarrow X$ zvezna preslikava. Potem $\exists x \in X$, da velja \hbox{$T(x) = x$}.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Bimatrične in matrične igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Bimatrična igra} je igra s funkcijami koristnosti za 2 igralca, $N = \set{1,2}$, pri katerih je
+\begin{align*}
+A_1 ~&=~ [m] ~=~ \set{1,\ldots,m} \\
+A_2 ~&=~ [n] ~=~ \set{1,\ldots,n}.
+\end{align*}
+Igro predstavimo z bimatriko.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Profil $(\p^*,\q^*) \in \pi_1 \times \pi_2$ je Nashevo ravnovesje $\iff$
+\begin{align*}
+\forall \p \in \pi_1: ~(\p^*)^\T \AA \q^* ~&\geq~ \p^\T \AA \q^* \\
+\forall \q \in \pi_2: ~(\p^*)^\T \BB \q^* ~&\geq~ (\p^*)^\T \BB \q
+\end{align*}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}[Sistem neenačb]
+
+Profil $(\p^*,\q^*)$ je Nashevo ravnovesje $\iff$
+\begin{align*}
+\forall i \in [m]: ~(\p^*)^\T \AA \q^* ~&\geq~ [\AA\q^*]_i \\
+\forall j \in [n]: ~(\p^*)^\T \BB \q^* ~&\geq~ [(\p^*)^\T \BB]_j
+\end{align*}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}[Princip indiferentnosti]
+
+Če je profil $(\p^*, \q^*)$ Nashevo ravnovesje, potem
+\begin{align*}
+\forall i \in [m]: ~(p_i^* > 0) ~&\Rightarrow~ (\p^*)^\T \AA \q^* = [\AA\q^*]_i \\
+\forall j \in [n]: ~(q_j^* > 0) ~&\Rightarrow~ (\p^*)^\T \AA \q^* = [(\p^*)^\T \AA]_j.
+\end{align*}
 
 \end{trditev}
 \vspace{0.5cm}
