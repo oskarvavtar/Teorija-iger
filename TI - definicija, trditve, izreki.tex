@@ -6,19 +6,38 @@
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{relsize}
 \usepackage{mathrsfs}
+\usepackage{bbm}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\A}{\mathcal{A}}
+\newcommand{\A}{\mathscr{A}}
+\renewcommand{\S}{\mathscr{S}}
 \newcommand{\diff}{\overset{\text{def}}{\iff}}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\oklepaj}[1]{\left(#1\right)}
 \newcommand{\oglati}[1]{\left[#1\right]}
+\renewcommand{\P}{\mathcal{P}}
+\renewcommand{\O}{\mathcal{O}}
 \newcommand{\T}{\textsf{T}}
+\newcommand{\TT}{\mathcal{T}}
+\newcommand{\V}{\mathscr{V}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\E}{\mathscr{E}}
 \newcommand{\p}{\mathbf{p}}
 \newcommand{\q}{\mathbf{q}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\c}{\mathbf{c}}
 \renewcommand{\AA}{\mathbf{A}}
 \newcommand{\BB}{\mathbf{B}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\bay}{\mathscr{B}}
+\newcommand{\kor}{\mathscr{K}}
+\newcommand{\eks}{\mathscr{E}}
+\newcommand{\pref}{\mathscr{P}}
+\renewcommand{\N}{\mathcal{N}}
+\newcommand{\D}{\mathcal{D}}
 
 \theoremstyle{definition}
 \newtheorem{definicija}{Definicija}[section]
@@ -164,8 +183,8 @@ analogno za $i=2,\ldots,n$.
 	\item Večkrat velja $|B_i(a)|=1$ (le en najboljši odgovor). V tem primeru pišemo brez $\set$.
 	\item Pri definiciji $B_i$ nima $a_i$ nobene vloge. Za dva igralca bomo ponavadi napisali
 	\begin{align*}
-	B_1(a_2) ~&\equiv~ B_1(*,a_2) \\
-	B_2(a_1) ~&\equiv~ B_2(a_1,*).
+	B_1(a_2) ~&\equiv~ B_1(\cdot,a_2) \\
+	B_2(a_1) ~&\equiv~ B_2(a_1,\cdot).
 	\end{align*}
 \end{itemize}
 
@@ -243,7 +262,7 @@ a_1 & \ldots & a_\Pi \\
 \pi(a_1) & \ldots & \pi(a_\Pi)
 \end{pmatrix}.$$ 
 Množica $\pi(A)$, definirana kot
-$$\pi(A) ~=~ \set{((\pi(a_i))_{a_i \in A} \mid \forall a_i \in A_i: \pi(a_i) \geq 0, ~\sum_{a_i \in A} \pi(a_i) = 1}$$
+$$\pi(A) ~=~ \set{((\pi(a_i))_{a_i \in A} \mid \forall a_i \in A: \pi(a_i) \geq 0, ~\sum_{a_i \in A} \pi(a_i) = 1}$$
 je \textit{množica loterij} na $A$.
 
 \end{definicija}
@@ -281,11 +300,11 @@ $$\Gamma ~=~ (N, (A_i)_{i \in N}, (u_i)_{i \in N}),$$
 pri čemer:
 \begin{itemize}
 	\item je $N$ neprazna in končna množica igralcev.
-	\item je $A_i$ neprazna in končna množica akcij za igralca $i \in N$. Naj bo $A = \prod_{i \in N} A_i$ množica profilov akcij.
+	\item je $A_i$ neprazna in končna množica akcij za igralca $i \in N$. Naj bo $\A = \prod_{i \in N} A_i$ množica profilov akcij.
 	\item je $u_i: A \rightarrow \R$ funkcija koristnosti za igralca $i \in N$.
 \end{itemize}
 
-\noindent Množica strategij za igralca $i \in N$ je $S_i = \pi(A_i)$. Strategija $\pi \in S_i$ meša akcije $\set{a \in A_i \mid \pi_i(a) > 0}$. Strategija $\pi \in S_i$ je čista, če je $\pi = S(a)$ za nek $a \in A_i$. Množica profilov strategij je $S = \prod_{i \in N} S_i$.
+\noindent Množica strategij za igralca $i \in N$ je $S_i = \pi(A_i)$. Strategija $\pi \in S_i$ meša akcije $\set{a \in A_i \mid \pi_i(a) > 0}$. Strategija $\pi \in S_i$ je čista, če je $\pi = S(a)$ za nek $a \in A_i$. Množica profilov strategij je $\S = \prod_{i \in N} S_i$.
 
 \end{definicija}
 \vspace{0.5cm}
@@ -294,11 +313,11 @@ pri čemer:
 
 Definiramo:
 \begin{align*}
-u_i: S = \prod_{j \in N} S_j ~&\rightarrow~ \R \\
-\pi = (\pi_j)_{j \in N} ~&\mapsto~ \sum_{a \in A} \oklepaj{\prod_{j \in N}\pi_j(a_j)} u_i(a).
+u_i: \S = \prod_{j \in N} S_j ~&\rightarrow~ \R \\
+\pi = (\pi_j)_{j \in N} ~&\mapsto~ \sum_{a \in \A} \oklepaj{\prod_{j \in N}\pi_j(a_j)} u_i(a).
 \end{align*}
 Velja:
-$$u_i(\pi) ~=~ \sum_{a_i \in A} \pi_i(a_i) \oglati{u_i(\pi \mid \delta(a_i)}.$$
+$$u_i(\pi) ~=~ \sum_{a_i \in A_i} \pi_i(a_i) \oglati{u_i(\pi \mid \delta(a_i)}.$$
 
 \end{trditev}
 \vspace{0.5cm}
@@ -311,7 +330,7 @@ $$u_i(\pi) ~=~ \sum_{a_i \in A} \pi_i(a_i) \oglati{u_i(\pi \mid \delta(a_i)}.$$
 \begin{definicija}
 
 Naj bo $\Gamma(N, (A_i)_{i \in N}, (u_i)_{i \in N})$ strateška igra s funkcijami koristnosti. Profil strategij 
-$$\Pi^* = (\pi_i^*) ~\in~ S = \prod_{i \in N} S_i$$
+$$\Pi^* = (\pi_i^*) ~\in~ \S = \prod_{i \in N} S_i$$
 je Nashevo ravnovesje $\diff$
 $$\forall i \in N, ~\forall \pi'_i \in S_i, ~\pi'_i \neq \pi_i^*: ~u_i^*(\pi^*) ~>~ u_i(\pi^* \mid \pi'_i).$$
 Imamo preslikavo
@@ -417,9 +436,16 @@ Naj bo $X \subseteq \R^d$ konveksna in kompaktna množica ter $T: X \rightarrow 
 \end{izrek}
 \vspace{0.5cm}
 
+\pagebreak
+
+% #################################################################################################
+
+\section{Bimatrične in matrične igre}
+\vspace{0.5cm}
+
 % *************************************************************************************************
 
-\subsection{Bimatrične in matrične igre}
+\subsection{Uvod}
 \vspace{0.5cm}
 
 \begin{definicija}
@@ -465,6 +491,604 @@ Profil $(\p^*,\q^*)$ je Nashevo ravnovesje $\iff$
 \end{align*}
 
 \end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Linearno programiranje}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Linearni program izgleda tako:
+\begin{align*}
+\max \c^\T \x& \\
+\text{p.p}~ \AA\x &\leq \b \\
+\c,\x &\in \R^n \\
+\AA &\in \R^{m \times n} \\
+\b &\in \R^m \\
+\x &\geq \mathbf{0} ~\text{ali}~ x_i \geq 0 ~\text{za nekatere}~ i
+\end{align*}
+Linearni program je lahko:
+\begin{itemize}
+	\item dopusten: $\exists \x \in \R^n: \AA\x \leq \b$
+	\begin{itemize}
+		\item neomejen: $\forall k \in \R~\exists \x \in \R^n: \c^\T\x \geq k,~\AA\x\leq\b$
+		\item omejen: $\sup\set{\c^\T\x; ~\x\in\R^n,~\AA\x\leq\b}$ obstaja in je $\max$, torej $\exists \x^* \in \R^n: \c^\T\x^* = \sup{\c^\T\x; ~\x\in\R^n,\AA\x\leq\b}$, je optimalna rešitev, $\AA\x^*\leq\b$
+	\end{itemize}
+	\item nedopusten: $\set{\x \in \R^n; ~\AA\x \leq \b} = \emptyset$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija} Dualnost:
+\begin{itemize}
+
+\item Originalen problem:
+\begin{align*}
+\max ~&\c^\T\x \\
+\text{p.p.}~ &\oglati{\AA\x}_{i = 1,\ldots,j} \leq \oglati{\b}_{i=1,\ldots,j} \\
+&\oglati{\AA\x}_{i = j+1,\ldots,m} = \oglati{\b}_{i=j+1,\ldots,m} \\
+&x_1,\ldots,x_k \geq 0 \\
+&x_{k+1},\ldots,x_n \in \R
+\end{align*}
+
+\item Dualni problem:
+\begin{align*}
+\max ~&\b^\T\y \\
+\text{p.p.}~ &\oglati{\AA^\T\y}_{i = 1,\ldots,k} \leq \oglati{\c}_{i=1,\ldots,k} \\
+&\oglati{\AA^\T\y}_{i = k+1,\ldots,n} = \oglati{\c}_{i=k+1,\ldots,n} \\
+&y_1,\ldots,y_j \geq 0 \\
+&y_{j+1},\ldots,y_n \in \R
+\end{align*}
+
+\end{itemize}
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Če je originalni problem omejen in ima optimalno rešitev $\x^*$, potem je dualni problem omejen in za vsako rešitev dualnega problema $\y^*$ velja
+$$\c^\T\x^* ~=~ \b^\T\y^*$$
+(optimalni rešitvi sta isti, če je problem omejen.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Stopnja varnosti}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\oglati{\AA,\BB}$ bimatrična igra. \textit{Stopnja varnosti} za 1. igralca je
+$$V_1 ~=~ \max_{\p\in\Pi_1}\min_{\q\in\Pi_2} \p^\T\AA\q ~=~ \max_{\p\in\Pi_1}\min_{\q\in\Pi_2} U_1(\p,\q).$$
+Maxmin strategija za 1. igralca je $\overline{\p}\in \Pi_1$, za katero velja $V_1 = \min_{\q\in\Pi_2}\overline{\p}^\T\AA\q$. Stopnja varnosti za 2. igralca je
+$$V_2 ~=~ \max_{\q\in\Pi_2}\min_{\p\in\Pi_1}\p^\T\BB\q.$$
+Maxmin strategija za 2. igralca je $\overline{\q}\in\Pi_2$, za katero je $V_2 = \min_{\p\in\Pi_1}\p^\T\BB\overline{q}$. Bolj splošno:
+\begin{align*}
+V_1 ~&=~ \max_{\p\in\Pi_1}\min_{\q\in\Pi_2}\sum_{j\in [n]}\oglati{\p^\T\AA}_j \q_j ~=~ \max_{\p\in\Pi_1}\min_{j\in [n]}\oglati{\p^\T\AA}_j \\
+V_2 ~&=~ \max_{\q\in\Pi_2}\min_{i\in [m]}\oglati{\BB\q}_i
+\end{align*}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če je $\p\in\Pi_1$ maxmin strategija, potem
+$$\forall\q\in\Pi_2: ~V_1 \leq \p^\T\AA\q.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$\set{\p\in\Pi_1; ~\p~\text{je maxmin}}$ in $\set{\q\in\Pi_2; ~\q~\text{je maxmin}}$ sta \hbox{konveksni.}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Računanje stopnje varnosti je linearni program.
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Matrične igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Matrična igra} je bimatrična igra $\oklepaj{\AA,\BB}$ z $\AA=-\BB$. Torej:
+\begin{itemize}
+	\item 2 igralca
+	\item 1. izbere $\AA_1 = [m]$
+	\item 2. izbere $\AA_2 = [n]$
+	\item $\AA_{i,j}=-\BB_{i,j}$ nam pove koliko 2. igralec plača 1. igralcu
+	\item $\AA$ je izplačilna matrika
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[von Neumann; minimax izrek]
+
+Za vsako matrično igro velja $V_1 = -V_2$ oziroma
+$$\max_\p \min_\q \p^\T\AA\q ~=~ \min_\q \max_\p \p^\T\AA\q.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}
+~
+\begin{itemize}
+	\item V spločnem $\max\min \neq \min\max$.
+	\item Uporabili bomo dualnost.
+\end{itemize}
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Če igralca uporabita svoje maxmin strategije $\p$ in $\q$, potem $V_1 = \p^\T\AA\q$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{posledica}
+~
+\begin{itemize}
+	\item Če je $\p$ maxmin strategija 1. igralca, potem $\forall \q\in\Pi_2: \p^\T\AA\q \geq V_1$.
+	\item Če je $\q$ maxmin strategija 2. igralca, potem $\forall \p\in\Pi_1: \p^\T\AA\q \leq V_1$. 
+\end{itemize}
+Vrednost igre je $V_1(\AA) =: V(\AA)$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Pravimo, da je igra \textit{poštena}, če $V(\AA)=0$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bo $\AA$ matrična igra, $\p\in\Pi_1$, $\q\in\Pi_2$, $u\in\R$. Če velja $\p^\T\AA \geq u\cdot \1_n^\T$ in $\AA\q \leq u \cdot \1_m$, potem je $u=V(\AA)$ ter $\p,\q$ maxmin strategiji.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če je $(\p,\q)\in\Pi_1\times\Pi_2$ Nashevo ravnovesje, potem sta $\p$ in $\q$ maxmin strategiji.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če je $\p$ maxmin za 1. igralca in $\q$ maxmin za 2. igralca, potem je $(\p,\q)$ Nashevo ravnovesje.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+$(\p,\q)$ je Nashevo ravnovesje $\iff$ $\p,\q$ maxmin strategiji.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Za matrične igre je $\set{(\p,\q)\in\Pi_1\times\Pi_2; ~(\p,\q)~\text{je Nashevo ravnovesje}}$ konveksna.
+
+\end{posledica}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Posebne matrične igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\AA$ matrična igra, $\AA = (a_{ij})_{i\in [m], j \in [n]}$. Položaj $(i,j)$ je \textit{sedlo}, če velja:
+\begin{align*}
+\forall i' \in [m]:& ~a_{ij} \geq a_{i'j} \\
+\forall j' \in [n]:& ~a_{ij} \leq a_{ij'}.
+\end{align*}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če ima matrična igra $\AA$ sedlo na $(i,j)$, potem:
+\begin{itemize}
+	\item $V(a) = a_{ij}$;
+	\item $(\delta(i),\delta(j))$ je Nashevo ravnovesje;
+	\item $\delta(i)$ je maxmin za 1. igralca;
+	\item $\delta(j)$ je maxmin za 2. igralca.
+\end{itemize}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Ko obstaja sedlo, je lahko maxmin strategij več.
+
+\end{opomba}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Bayesove igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Bayesova igra} je $7$-terica $\oklepaj{N, \Omega, (p_i)_{i \in N}, (A_i)_{i \in N}, (u_i)_{i \in \N}, (T_i)_{i \in \N}, (\tau_i)_{i \in N}}$, kjer:
+\begin{itemize}
+	\item $N$ ... končna, neprazna množica igralcev;
+	\item $\Omega$ ... neprazna množica stanj; posamezno stanje označimo $\omega$;
+	\item $p_i: \Omega \rightarrow [0,1]$ ... funkcija verjetnosti za stanja igralca $i$ (``predhodno prepričanje'');
+	\item $A_i$ ... neprazna, končna množica akcija za igralca $i \in N$; profil akcij označimo s $\A = \prod_{i \in N} A_i$;
+	\item $u_i: \Omega \times \A \rightarrow \R$ ... funkcija koristnosti za igralca $i$;
+	\item $T_i$ ... neprazna množica signalov za igralca $i$;
+	\item $\tau_i$ ... signalna funkcija za igralca $i$.
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Vsako stanje $\omega \in \Omega$ v Bayesovi igri $\Gamma$ določi strateško igro s funkcijami koristnosti $\Gamma_\omega = \oklepaj{N, (A_i)_{i \in N}, (u_i(\omega,\cdot))_{i \in N}}$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Posamezen $i \in N$ ima v vsaki $\Gamma_\omega$ na voljo iste akcije.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Definiramo
+\begin{align*}
+\phi_{\bay\rightarrow\kor}: \set{\text{Bayesove igre}} ~&\rightarrow~ \set{\text{igre s funkcijami koristnosti}} \\
+(N,\Omega,p_i,A_i,u_i,T_i,\tau_i) ~&\mapsto~ (\mathcal{T}, (A_{(i,t_i)}=A_i)_{(i,t_i)\in\mathcal{T}}, (\tilde{u}_{(i,t_i)})_{(i,t_i)\in\mathcal{T}})
+\end{align*}
+kjer je $\mathcal{T}$ množica tipov. Bayesovo ravnovesje v Bayesovi igri $\Gamma$ $\equiv$ Nashevo ravnovesje v $\phi_{\bay\rightarrow\kor}(\Gamma)$ (čisto ali mešano). Bayesovo ravnovesje vedno obstaja, le so $A_i$ končne $\forall i \in N$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Ekstenzivne igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Ekstenzivna igra} je $4$-terica $(N, \TT, \P, (u_i)_{i \in N})$, kjer:
+\begin{itemize}
+	\item $N$ ... končna množica igralcev
+	\item $\TT$ ... drevo s korenom $r$ (brez neskončno poti)
+	\begin{itemize}
+		\item $\mathscr{L}(\TT)$ ... množica listov
+		\item $\mathscr{V}(\TT)$ ... množica vozlišč
+		\item $\mathscr{E}(\TT)$ ... množica povezav
+		\item $\mathscr{E}_v$ ... množica povezav od $v$ navzdol
+	\end{itemize}
+	\item $\P: \V(\TT)\setminus\L(\TT) \rightarrow N$ ... določi, kdo je na vrsti
+	\item $u_i: \L(\TT) \rightarrow \R$ je funkcija preferenc igralca $i$ na $\L(\TT)$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+~
+\begin{itemize}
+	\item Če ima $\TT$ neskončne poti, potem se igra na konča.
+	\item $u_i$ so lahko tudi funkcije koristnosti.
+	\item Večkrat je ``ime'' vozlišča zgodovina akcij, da pridemo do tega stanja.
+	\item Igra poteka od korena navzdol.
+	\item Vsaka ekstenzivna igra $\Gamma = (N, \TT, \P, (u_i)_{i \in N})$ določi za vsako vozlišče $v \in \V(\TT)$ podigro $\Gamma(v) = (N, \TT(v), \P\big|_{\V(\TT(v))\setminus\L(\TT(v))}, (u_i\big|_{\L(\TT(v))})_{i \in N})$
+\end{itemize}
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Definiramo preslikavo \textit{izid}:
+\begin{align*}
+\O: \prod_{i \in N}S_i = \S ~&\rightarrow~ \L(\TT) \\
+(s_i)_{i \in N} ~&\mapsto~ \text{list drevesa, kjer se konča igra, če igralci uporabljajo strategije}~ (S_i)_{i \in N},
+\end{align*}
+torej dobimo edini list, za katerega obstaja pot v drevesu od korena, ki uporabi samo povezave v $\bigcup_{i \in N} S_i$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Definiramo
+\begin{align*}
+\phi_{\eks\rightarrow\pref}: ~\set{\text{ekstenzivne igre}} ~&\rightarrow~ \set{\text{igre s funkcijami preferenc}} \\
+(N, \TT, \P, u_i) ~&\mapsto~ (N, S_i, (u_i \circ \O)_{i \in N})
+\end{align*}
+Nasheva ravnovesja v ekstenzivni igri $\Gamma$ so Nasheva ravnovesja v strateški igri $\phi_{\eks\rightarrow\pref}(\Gamma)$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Definiramo funkcija \textit{izida za vozlišče $v$}:
+\begin{align*}
+\O_v: ~\S ~&\rightarrow~ \L(\TT) \\
+(s_i)_{i \in N} ~&\mapsto~ \text{list v}~\TT(v),~\text{kjer se konča igra, če začnemo v vozlišču}~v
+\end{align*}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Profil strategij $\mathbf{s} = (s_i)_{i \in N}$ je vgnezdeno Nashevo ravnovesje, če velja
+$$\forall v \in \V(\TT),~\forall i \in N,~\forall s'_i \in \mathbf{s}:~(u_i \circ \O_v)(\mathbf{s}) ~\geq~ (u_i \circ \O_v)(\mathbf{s} \mid s'_i)$$
+oz. $(u_i \circ \O_v)(s_1,\ldots,s_n) \geq (u_i \circ \O_v)(s_1,\ldots,s_{i-1},s'_i,s_{i+1},\ldots,s_n)$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Ekstenzivna igra z nepopolno informacijo vsebuje:
+\begin{itemize}
+	\item $N$ ... neprazna množica igralcev
+	\item $\TT$ ... drevo s korenom brez neskončnih poti
+	\begin{itemize}
+		\item $\L(\TT)$ ... listi
+		\item $\E_v$ ... povezave iz $v$ navzdol
+	\end{itemize}
+	\item $u_i: \L(\TT) \rightarrow \R$ funkcija koristnosti
+	\item $I_1,\ldots,I_n$ ... razdelitev $\V(\TT)\setminus\L(\TT)$. Velja:
+	$$\forall j,~\forall u,v \in I_j: ~|\E_u| = |\E_v|$$
+	\item $\P: \set{I_1,\ldots,I_n} \rightarrow \N \cup \set{\text{slučaj}}$ ... določi, kdo je na vrsti na vsaki informacijski množici
+	\item Za vsako informacijsko množico $I_j$ naredimo indentifikacije med povezavami v $\bigcup_{u \in I_i} \E_u$
+	\item Na informacijski množici, kjer je slučaj na vrsti, funkcija verjetnosti na povezavah
+\end{itemize}
+
+Podigre morajo vsebovati bodisi celo informacijsko množico ali nič iz informacijske množice. $\Gamma(v)$ je podigra, če velja:
+$$\forall I_j: ~\V(\TT(v)) \supseteq I_j \quad\text{ali}\quad \V(\TT(v)) \cap I_j = \emptyset.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Kooperativne igre}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Nashev produkt}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $K$ konveksna in kompaktna množica v $\R^2$. Predpostavimo, da $\exists (x,y) \in K: x>x_0$, $y>y_0$. Potem obstaja enolična točka $(x^*,y^*)$ znotraj $K$, $x^* \geq x_0$, $y^* \geq y_0$ in
+$$\Phi(K,x_0,y_0) ~=~ (x^*-x_0)(y^*-y_0),$$
+kjer je $\Phi(K,x_0,y_0):=\sup(x-x_0)(y-y_0)$. Definiramo to enolično točko kot $\N(K,x_0,y_0)$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\TT$ trikotnik z oglišči $(0,0),(\alpha,0),(0,\beta)$, $\alpha,\beta>0$. Potem
+$$\N(\TT,0,0) ~=~ \oklepaj{\frac{\alpha}{2},\frac{\beta}{2}}.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $f_1(x) = \alpha_1 x + \beta_1$, $\alpha_1$, $f_2(y) = \alpha_2 y + \beta_2$, $\alpha_2 > 0$. Za vsak $K$ definiramo $K_f = \set{\oklepaj{f_1(x),f_2(x)} \mid (x,y)\in K}$. Potem velja
+$$\N\oklepaj{K_f, f_1(x_0), f_2(y_0)} ~=~ (f_1,f_2)\oklepaj{\N(K,x_0,y_0)}.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Nashev model pogajanja}
+\vspace{0.5cm}
+
+\begin{definicija}
+~
+\begin{itemize}
+	\item 2 igralca
+	\item $\D$ ... dopustni izidi sporazumov, konveksen
+	\item $(a_0,b_0)\in\R^2$ ... točka nesporazuma (\textit{status quo})
+\end{itemize}
+Če do sporazuma ne pride, potem bo $(a_0,b_0)$ izid igre. Predpostavimo:
+$$\exists (a,b) \in \D: ~a>a_0,~b>b_0$$
+Iščemo funkcijo 
+$$\varphi(\D,a_0,b_0) ~=~ \oklepaj{\varphi_1(\D,a_0,b_0),\varphi_2(\D,a_0,b_0)} \in \R^2,$$
+ki bo ``rešitev''. Lastnosti funkcije $\varphi$:
+\begin{enumerate}
+
+\item[(A1)] (Dopustnost):
+$$\varphi(\D,a_0,b_0) \in \D$$
+
+\item[(A2)] (Individualno racionalnost):
+$$\varphi_1(\D,a_0,b_0) \geq a_0,~\varphi_2(\D,a_0,b_0)\geq b_0$$
+
+\item[(A3)] (Paretova optimalnost):
+$$\forall (a,b)\in\D,~(a,b)\neq\varphi(\D,a_0,b_0):~a<\varphi_1(\D,a_0,b_0),~b<\varphi_2(\D,a_0,b_0).$$
+
+\item[(A4)] (Simetrija): Če je $\D$ simetrična glede na premico $a=b$ \hbox{($(a,b)\in\D \iff (b,a)\in\D$)}, potem
+$$\varphi_1(\D,0,0) ~=~ \varphi_2(\D,0,0)$$
+
+\item[(A5)] (Preoblikovanje koristnosti): Za poljubni funkciji $f_1(x) = \alpha_1 x + \beta_1$, $f_2(y) = \alpha_2 y + \beta_2$, $\alpha_1,\alpha_2>0$ velja
+$$\oklepaj{f_1\oklepaj{\varphi_1(\D,a_0,b_0)}, f_2\oklepaj{\varphi(\D,a_0,b_0)}} ~=~ \varphi\oklepaj{\D_f,f_1(a_0),f_2(b_0)}$$
+
+\item[(A6)] (Neodvisnost od irelevantnih možnosti)
+$$\D' \subseteq \D, \varphi(\D,a_0,b_0)\in\D' ~\Rightarrow~ \varphi(\D',a_0,b_0) = \varphi(\D,a_0,b_0)$$
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Nash]
+
+Obstaja enolična funkcija $\varphi$, ki zadošča lastnostim (A1)-(A6) in sicer
+$$\varphi(\D,a_0,b_0) ~=~ \N(\D,a_0,b_0).$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+$[A,B]$ bimatrična igra, prenosljiva koristnost. $\D := \D_{PK}(A,B)$
+$$\varphi(\D,a_0,b_0) ~=~ \N(\D,a_0,b_0) ~=~ \oklepaj{\frac{a_0-b_0+\sigma}{2},\frac{b_0-a_0+\sigma}{2}},$$
+kjer je $\sigma = \max_{i,j}(a_{ij} + b_{ij})$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Koalicijske igre}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Koaliciska igra je par $(N,v)$, pri čemer je:
+\begin{itemize}
+	\item $N$ ... množica igralcev
+	\item $v: 2^N \rightarrow \R$, $v(\emptyset)=0$ ... karakteristična funkcija
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $S \subseteq N$ koalicija. Definiramo:
+\begin{itemize}
+	\item \textit{Superaditivnost}:
+	$$\forall S,T \subseteq M, ~S \cap T = \emptyset: ~v(S)+v(T) \leq v(S\cup T)$$
+	\item \textit{Subaditivnost}:
+	$$\forall S,T \subseteq M, ~S \cap T = \emptyset: ~v(S)+v(T) \geq v(S\cup T)$$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\Gamma = (N,v)$ koalicijska igra:
+\begin{itemize}
+	\item vektor plačil: $(x_i)_{i \in N} \in \R^N$
+	\item vektor plačil je skupno racionalni, če
+	$$\sum_{i \in N} x_i ~=~ v(N)$$
+	\item vektor plačil je individualno racionalen, če
+	$$\forall i \in N: ~x_i \geq v\oklepaj{\set{i}}$$
+	\item \textit{imputacija} je plačilni vektor, ki je skupno in individualno racionalen. Množica imputacij:
+	$$I(\Gamma) ~=~ \big\{(x_i)_{i \in N}\in\R^N \mid \forall i \in N: ~x_i \geq v(\set{i}),~\sum_{i \in N}x_i = v(N)\big\}$$
+	\item \textit{jedro} koalicijske igre $\Gamma = (N,v)$ je
+	$$J(\Gamma) ~=~ \big\{(x_i)_{i \in N}\in\R^N \mid \sum_{i \in N}x_i = v(N),~\forall S \subset N: \sum_{i \in S}x_i \geq v(S)\big\}$$
+	\item imptuacija $\x = (x_i)_{i \in N}$ je stabilna preko koalicije $S$, če velja
+	$$\sum_{i \in S} x_i \geq v(s)$$
+	\item jedro je množica impuzacij, ki so skupno racionalne in stabilne preko vseh koalicij. Velja $J(\Gamma) \subseteq I(\Gamma)$.
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če je $\Gamma$ superaditivna, potem $I(\Gamma) \neq \emptyset$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}[Shapleyeve vrednosti]
+
+Naj bo $N = [n]$. Iščemo funkcijo $\phi = (\phi_1,\ldots,\phi_n): \set{v:2^{[n]}\rightarrow\R}\rightarrow\R^n$, $v(\emptyset)=0$, ki ima naslednje lastnosti:
+\begin{enumerate}
+
+\item[(A1)] (Učinkovitost/skupna racionalnost):
+$$\forall v: ~\sum_{i \in [n]} \phi_i(v) ~=~ v([n])$$
+
+\item[(A2)] (Simetrija):
+$$\forall i,j \in [n],~\forall v: ~\oklepaj{\oklepaj{\forall S \subseteq [n]\setminus\set{i,j}: v(S \cup \set{i}) = v(S \cup \set{j})} ~\Longrightarrow~ \phi_i(v) = \phi_j(v)}$$
+
+\item[(A3)] (Dummy player):
+$$\forall i \in [n],~\forall v: ~\oklepaj{\oklepaj{\forall S \subseteq [n]\setminus\set{i}: v(S) = v(S \cup \set{i})} \Longrightarrow \phi_i(v) = 0}$$
+
+\item[(A4)] (Aditivnost):
+$$\forall i \in [n],~\forall v,v': ~\phi_i(v+v') = \phi_i(v) + \phi_i(v')$$
+
+\end{enumerate}
+Obstaja enolično določena funkcija $\phi$, ki zadošča pogojem (A1)-(A4).
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\pi: [n] \rightarrow [n]$ permutacija. 
+$$N(\pi,i) = \set{j \in [n] \mid \pi^{-1}(j) \leq \pi^{-1}(i)}$$
+je množica igralcev, ki pridejo pred $i$ ter $i$. Naj bo
+$$\Delta(\pi,i,v) ~=~ v\oklepaj{N(\pi,i)} - v\oklepaj{N(\pi,i)\setminus\set{i}}.$$
+Definiramo
+\begin{align*}
+\phi_i(v) ~&=~ \mathbb{E}_\pi[\Delta(\pi,i,v)] \\
+&=~ \frac{1}{n!} \sum_{\pi \in S_n} \Delta(\pi,i,v)) \\
+&=~ \frac{1}{n!} \sum_{S \subseteq N,~i \notin S} |S|!(n-|S|-1)!(v(S \cup \set{I}) - v(S))
+\end{align*}
+Te $(\phi_i)_{i \in N}$ so Shapleyeve vrednosti in ustrezajo pogojem (A1)-(A4).
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+$(\phi_i)_{i \in N}$ je enolična funkcija, ki zadošča aksiomom (A1)-(A4).
+
+\end{izrek}
 \vspace{0.5cm}
 
 % *************************************************************************************************
